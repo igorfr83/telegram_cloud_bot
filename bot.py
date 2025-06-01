@@ -1,30 +1,24 @@
 import os
-from aiogram import Bot, Dispatcher, types, executor
-from dotenv import load_dotenv
+import asyncio
+from pyrogram import Client, filters
 from news_fetcher import get_crypto_news
+from dotenv import load_dotenv
 
-# Загружаем переменные окружения
 load_dotenv()
 
-# Получаем токены из окружения
-TOKEN = os.getenv("TOKEN")
-CHAT_ID = os.getenv("CHAT_ID")
+bot_token = os.getenv("TOKEN")
+chat_id = os.getenv("CHAT_ID")
 
-# Инициализируем бота
-bot = Bot(token=TOKEN)
-dp = Dispatcher(bot)
+app = Client("crypto_bot", bot_token=bot_token)
 
-# Команда /start
-@dp.message_handler(commands=['start'])
-async def start_handler(message: types.Message):
-    await message.answer("👋 Привет! Я бот по криптовалюте. Используй команду /news, чтобы получить свежие новости.")
+@app.on_message(filters.command("start"))
+async def start(client, message):
+    await message.reply("👋 Привет! Я бот по криптовалюте. Используй команду /news")
 
-# Команда /news
-@dp.message_handler(commands=['news'])
-async def news_handler(message: types.Message):
+@app.on_message(filters.command("news"))
+async def news(client, message):
     news = get_crypto_news()
-    await message.answer(news)
+    await client.send_message(chat_id=message.chat.id, text=news)
 
-# Запуск
 if __name__ == "__main__":
-    executor.start_polling(dp)
+    app.run()
