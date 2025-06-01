@@ -18,8 +18,8 @@ def start(client, message):
 # Команда /news
 @app.on_message(filters.command("news"))
 def send_news(client, message):
-news = get_crypto_news()
-client.send_message(chat_id=message.chat.id, text=news)
+    news = get_crypto_news()
+    client.send_message(chat_id=message.chat.id, text=news)
 
 # Запуск бота
 app.run()
