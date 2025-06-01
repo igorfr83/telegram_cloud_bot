@@ -26,5 +26,5 @@ async def news_handler(message: types.Message):
     await message.answer(news)
 
 # Запуск
-if__name == "__main__":
+if __name__ == "__main__":
     executor.start_polling(dp)
