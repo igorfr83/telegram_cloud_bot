@@ -18,13 +18,12 @@ def get_crypto_news():
         data = response.json()
 
         news_items = []
-        for item in data.get("results", [])[:5]:  # Берём только 5 новостей
+        for item in data.get("results", [])[:5]:  # максимум 5 новостей
             title = item.get("title", "Без названия")
             url = item.get("url", "")
             published = item.get("published_at", "")
             news_items.append(f"📰 {title}\n🔗 {url}\n🕒 {published}\n")
 
-        return "\n".join(news_items) if news_items else "Нет свежих новостей."
-    
+        return "\n".join(news_items) if news_items else "ℹ️ Нет свежих новостей."
     except Exception as e:
         return f"⚠️ Ошибка при получении новостей: {e}"
