@@ -13,7 +13,7 @@ app = Client("crypto_bot", bot_token=bot_token)
 # Команда /start
 @app.on_message(filters.command("start"))
 def start(client, message):
-message.reply("👋 Привет! Я бот по криптовалюте. Используй /news, чтобы получить свежие новости.")
+    message.reply("👋 Привет! Я бот по криптовалюте. Используй /news, чтобы получить свежие новости.")
 
 # Команда /news
 @app.on_message(filters.command("news"))
