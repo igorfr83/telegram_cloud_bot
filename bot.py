@@ -12,5 +12,5 @@ async def main():
     bot = Bot(token=TOKEN)
     await bot.send_message(chat_id=CHAT_ID, text="✅ Бот работает из облака!")
 
-if name == "__main__":
+if__name == "__main__":
     asyncio.run(main())
