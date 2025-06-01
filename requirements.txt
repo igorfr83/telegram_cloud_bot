@@ -1,6 +1,4 @@
 requests
+python-dotenv
 pyrogram
 tgcrypto
-python-dotenv
-pandas
-openpyxl

@@ -7,7 +7,7 @@ def get_crypto_news():
     params = {
         'auth_token': API_KEY,
         'public': 'true',
-        'currencies': 'BTC,ETH',  # можно добавить любые другие токены
+        'currencies': 'BTC,ETH',
         'kind': 'news',
         'regions': 'en'
     }
@@ -24,7 +24,7 @@ def get_crypto_news():
             published = item.get("published_at", "")
             news_items.append(f"📰 {title}\n🔗 {url}\n🕒 {published}\n")
 
-        return "\n".join(news_items) if news_items else "❗️Нет свежих новостей."
+        return "\n".join(news_items) if news_items else "Нет свежих новостей."
     
     except Exception as e:
         return f"⚠️ Ошибка при получении новостей: {e}"
